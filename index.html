@@ -77,27 +77,59 @@
             margin-top: 15px;
             text-align: center;
         }
-        /* Works Section - New Minimalist Style */
-        .works {
+        /* Art Grid */
+        .art-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
             margin-bottom: 50px;
-            display: none;
         }
-        .work-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
+        .artwork {
+            cursor: pointer;
+            transition: transform 0.3s;
         }
-        .work-item {
-            margin-bottom: 30px;
+        .artwork:hover {
+            transform: scale(1.02);
         }
-        .work-title {
+        .artwork img {
+            width: 100%;
+            height: auto;
+            border: 1px solid #eee;
+            margin-bottom: 10px;
+        }
+        .art-title {
             font-weight: bold;
             display: block;
-            margin-bottom: 3px;
         }
-        .work-year {
+        .art-year {
             color: #777;
             font-size: 14px;
+        }
+        /* Lightbox Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            overflow: auto;
+        }
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 90%;
+        }
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
         }
         /* Info Section */
         .info {
@@ -163,39 +195,43 @@
             </div>
         </div>
 
-        <!-- Art/Works Section - Minimalist List -->
+        <!-- Art Grid Section -->
         <div id="works" class="works">
             <h2>Paintings</h2>
-            <ul class="work-list">
-                <li class="work-item">
-                    <span class="work-title">Turkis Quest painting</span>
-                    <span class="work-year">2014</span>
-                </li>
-                <li class="work-item">
-                    <span class="work-title">Pioneers and Algae</span>
-                    <span class="work-year">2014</span>
-                </li>
-                <li class="work-item">
-                    <span class="work-title">Algae and Orchids</span>
-                    <span class="work-year">2014</span>
-                </li>
-                <li class="work-item">
-                    <span class="work-title">Her name & Amygdala Vertigo</span>
-                    <span class="work-year">2014-12</span>
-                </li>
-                <li class="work-item">
-                    <span class="work-title">Pioneers painting</span>
-                    <span class="work-year">2013</span>
-                </li>
-            </ul>
+            <div class="art-grid">
+                <!-- Artwork 1 -->
+                <div class="artwork" onclick="openModal('ben1.jpg')">
+                    <img src="ben1.jpg" alt="Turkis Quest painting">
+                    <span class="art-title">Turkis Quest painting</span>
+                    <span class="art-year">2014</span>
+                </div>
+                <!-- Artwork 2 -->
+                <div class="artwork" onclick="openModal('ben2.jpg')">
+                    <img src="ben2.jpg" alt="Pioneers and Algae">
+                    <span class="art-title">Pioneers and Algae</span>
+                    <span class="art-year">2014</span>
+                </div>
+                <!-- Add more artworks as needed -->
+                <div class="artwork" onclick="openModal('ben1.jpg')">
+                    <img src="ben1.jpg" alt="Algae and Orchids">
+                    <span class="art-title">Algae and Orchids</span>
+                    <span class="art-year">2014</span>
+                </div>
+                <div class="artwork" onclick="openModal('ben2.jpg')">
+                    <img src="ben2.jpg" alt="Her name & Amygdala Vertigo">
+                    <span class="art-title">Her name & Amygdala Vertigo</span>
+                    <span class="art-year">2014-12</span>
+                </div>
+            </div>
 
             <h2>Drawings</h2>
-            <ul class="work-list">
-                <li class="work-item">
-                    <span class="work-title">From the series Voluk & Other Stories</span>
-                    <span class="work-year">1977</span>
-                </li>
-            </ul>
+            <div class="art-grid">
+                <div class="artwork" onclick="openModal('ben1.jpg')">
+                    <img src="ben1.jpg" alt="From the series Voluk & Other Stories">
+                    <span class="art-title">From the series Voluk & Other Stories</span>
+                    <span class="art-year">1977</span>
+                </div>
+            </div>
         </div>
 
         <!-- Info/Contact Section -->
@@ -210,6 +246,12 @@
                 Email: <a href="mailto:jo.huschenbett@gmail.com">jo.huschenbett@gmail.com</a>
             </p>
         </div>
+    </div>
+
+    <!-- Lightbox Modal -->
+    <div id="modal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modal-image">
     </div>
 
     <footer>
@@ -228,8 +270,8 @@
         // Slideshow functionality
         let currentSlide = 0;
         const slides = document.querySelectorAll('.slide');
-        const slideTitles = ["Artwork Title", "Another Artwork"]; // Update these
-        const slideYears = ["Year", "Year"]; // Update these
+        const slideTitles = ["Artwork Title", "Another Artwork"];
+        const slideYears = ["Year", "Year"];
         
         function showSlide(n) {
             slides.forEach(slide => slide.classList.remove('active'));
@@ -245,6 +287,26 @@
         
         // Change slide every 5 seconds
         setInterval(nextSlide, 5000);
+        
+        // Lightbox functionality
+        function openModal(src) {
+            const modal = document.getElementById('modal');
+            const modalImg = document.getElementById('modal-image');
+            modal.style.display = "block";
+            modalImg.src = src;
+        }
+        
+        function closeModal() {
+            document.getElementById('modal').style.display = "none";
+        }
+        
+        // Close modal when clicking outside image
+        window.onclick = function(event) {
+            const modal = document.getElementById('modal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
         
         // Page navigation
         function showHome() {
