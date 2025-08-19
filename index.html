@@ -16,9 +16,10 @@
             flex-direction: column;
         }
         .container {
+            width: 90%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px 40px;
+            padding: 20px 5%;
             flex: 1;
         }
         h1 {
@@ -79,11 +80,25 @@
             font-size: 14px;
             color: #777;
             border-top: 1px solid #ddd;
-            padding: 20px 40px;
+            padding: 20px 5%;
             background: #f9f9f9;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .footer-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        .footer-links a {
+            color: #777;
+            text-decoration: none;
+        }
+        .footer-links a:hover {
+            text-decoration: underline;
         }
         .instagram-link {
             display: flex;
@@ -143,20 +158,26 @@
 
     <footer>
         <span>© 2024 Your Name. All rights reserved.</span>
-        <a href="https://www.instagram.com/bn.wnklr/" class="instagram-link" target="_blank">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/768px-Instagram_logo_2016.svg.png" alt="Instagram">
-            <span>@bn.wnklr</span>
-        </a>
+        <div class="footer-links">
+            <a href="#" onclick="showInfo()">Contact</a>
+            <a href="impressum.html">Impressum</a> <!-- Link to your privacy policy page -->
+            <a href="https://www.instagram.com/bn.wnklr/" class="instagram-link" target="_blank">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/768px-Instagram_logo_2016.svg.png" alt="Instagram">
+                <span>@bn.wnklr</span>
+            </a>
+        </div>
     </footer>
 
     <script>
         function showWorks() {
             document.getElementById("works").style.display = "block";
             document.getElementById("info").style.display = "none";
+            window.scrollTo(0, 0); // Scroll to top when switching
         }
         function showInfo() {
             document.getElementById("works").style.display = "none";
             document.getElementById("info").style.display = "block";
+            window.scrollTo(0, 0); // Scroll to top when switching
         }
         // Default: show works
         showWorks();
