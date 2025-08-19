@@ -11,9 +11,15 @@
             margin: 0;
             padding: 0;
             color: #333;
-            max-width: 800px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .container {
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 20px 40px;
+            flex: 1;
         }
         h1 {
             font-size: 24px;
@@ -31,21 +37,36 @@
             margin-bottom: 50px;
         }
         .work-item {
-            margin-bottom: 15px;
+            margin-bottom: 25px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            align-items: flex-start;
+        }
+        .work-text {
+            flex: 1;
+            min-width: 200px;
         }
         .work-title {
             font-weight: bold;
+            display: block;
         }
         .work-year {
             color: #777;
         }
+        .work-image {
+            width: 200px;
+            height: auto;
+            border: 1px solid #eee;
+        }
         nav {
-            margin: 20px 0;
+            margin: 20px 0 40px 0;
         }
         nav a {
             color: #333;
             text-decoration: none;
             margin-right: 15px;
+            font-size: 16px;
         }
         nav a:hover {
             text-decoration: underline;
@@ -58,67 +79,74 @@
             font-size: 14px;
             color: #777;
             border-top: 1px solid #ddd;
-            padding-top: 10px;
+            padding: 20px 40px;
+            background: #f9f9f9;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .instagram-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: #777;
+        }
+        .instagram-link img {
+            width: 20px;
+            height: 20px;
         }
     </style>
 </head>
 <body>
-    <h1>Your Name</h1>
+    <div class="container">
+        <h1>Your Name</h1>
 
-    <nav>
-        <a href="#" onclick="showWorks()">Works</a>
-        <a href="#" onclick="showInfo()">Info/Contact</a>
-    </nav>
+        <nav>
+            <a href="#" onclick="showWorks()">Works</a>
+            <a href="#" onclick="showInfo()">Info/Contact</a>
+        </nav>
 
-    <!-- WORKS SECTION -->
-    <div id="works" class="works">
-        <h2>Paintings</h2>
-        <div class="work-item">
-            <span class="work-title">Turkis Quest painting</span>
-            <span class="work-year">2014</span>
-        </div>
-        <div class="work-item">
-            <span class="work-title">Pioneers and Algae</span>
-            <span class="work-year">2014</span>
-        </div>
-        <div class="work-item">
-            <span class="work-title">Algae and Orchids</span>
-            <span class="work-year">2014</span>
-        </div>
-        <!-- Add more works here -->
-        <div class="work-item">
-            <span class="work-title">Her name & Amygdala Vertigo</span>
-            <span class="work-year">2014-12</span>
-        </div>
-        <div class="work-item">
-            <span class="work-title">Pioneers painting</span>
-            <span class="work-year">2013</span>
+        <!-- WORKS SECTION -->
+        <div id="works" class="works">
+            <h2>Paintings</h2>
+            <div class="work-item">
+                <div class="work-text">
+                    <span class="work-title">Turkis Quest painting</span>
+                    <span class="work-year">2014</span>
+                </div>
+                <img src="turkis-quest.jpg" alt="Turkis Quest painting" class="work-image">
+            </div>
+            <div class="work-item">
+                <div class="work-text">
+                    <span class="work-title">Pioneers and Algae</span>
+                    <span class="work-year">2014</span>
+                </div>
+                <img src="pioneers-algae.jpg" alt="Pioneers and Algae" class="work-image">
+            </div>
+            <!-- Add more works as needed -->
         </div>
 
-        <h2>Drawings</h2>
-        <div class="work-item">
-            <span class="work-title">From the series Voluk & Other Stories</span>
-            <span class="work-year">drawing: 1977</span>
+        <!-- INFO/CONTACT SECTION -->
+        <div id="info" class="info">
+            <h2>Info</h2>
+            <p>
+                Short bio or artist statement goes here. 
+                Describe your artistic practice, inspirations, or exhibitions.
+            </p>
+            <h2>Contact</h2>
+            <p>
+                Email: <a href="mailto:jo.huschenbett@gmail.com">jo.huschenbett@gmail.com</a>
+            </p>
         </div>
-    </div>
-
-    <!-- INFO/CONTACT SECTION (hidden by default) -->
-    <div id="info" class="info">
-        <h2>Info</h2>
-        <p>
-            Short bio or artist statement goes here. 
-            You can describe your artistic practice, inspirations, or exhibitions.
-        </p>
-
-        <h2>Contact</h2>
-        <p>
-            Email: <a href="jo.huschenbett@gmail.com">your-email@example.com</a><br>
-            Instagram: <a href="https://www.instagram.com/bn.wnklr/">@yourusername</a>
-        </p>
     </div>
 
     <footer>
-        © 2024 Your Name. All rights reserved.
+        <span>© 2024 Your Name. All rights reserved.</span>
+        <a href="https://www.instagram.com/bn.wnklr/" class="instagram-link" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/768px-Instagram_logo_2016.svg.png" alt="Instagram">
+            <span>@bn.wnklr</span>
+        </a>
     </footer>
 
     <script>
