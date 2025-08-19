@@ -32,7 +32,9 @@
         h2 {
             font-size: 18px;
             font-weight: normal;
-            margin: 30px 0 10px 0;
+            margin: 50px 0 20px 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
         /* Navigation */
         .main-nav {
@@ -75,37 +77,32 @@
             margin-top: 15px;
             text-align: center;
         }
-        /* Works Section */
+        /* Works Section - New Minimalist Style */
         .works {
             margin-bottom: 50px;
             display: none;
         }
-        .work-item {
-            margin-bottom: 25px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            align-items: flex-start;
+        .work-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
         }
-        .work-text {
-            flex: 1;
-            min-width: 200px;
+        .work-item {
+            margin-bottom: 30px;
         }
         .work-title {
             font-weight: bold;
             display: block;
+            margin-bottom: 3px;
         }
         .work-year {
             color: #777;
-        }
-        .work-image {
-            width: 200px;
-            height: auto;
-            border: 1px solid #eee;
+            font-size: 14px;
         }
         /* Info Section */
         .info {
             display: none;
+            line-height: 1.8;
         }
         /* Footer */
         footer {
@@ -158,33 +155,47 @@
 
         <!-- Home/Slideshow Section -->
         <div id="home" class="slideshow">
-            <img src="ben1.jpg" class="slide active" alt="Turkis Quest painting">
-            <img src="ben2.jpg" class="slide" alt="Pioneers and Algae">
-            <!-- Add more slides as needed -->
+            <img src="ben1.jpg" class="slide active" alt="Artwork">
+            <img src="ben2.jpg" class="slide" alt="Artwork">
             <div class="slide-info">
-                <span id="slide-title">Turkis Quest painting</span>
-                <span id="slide-year">2014</span>
+                <span id="slide-title">Artwork Title</span>
+                <span id="slide-year">Year</span>
             </div>
         </div>
 
-        <!-- Art/Works Section -->
+        <!-- Art/Works Section - Minimalist List -->
         <div id="works" class="works">
             <h2>Paintings</h2>
-            <div class="work-item">
-                <div class="work-text">
+            <ul class="work-list">
+                <li class="work-item">
                     <span class="work-title">Turkis Quest painting</span>
                     <span class="work-year">2014</span>
-                </div>
-                <img src="ben1.jpg" alt="Turkis Quest painting" class="work-image">
-            </div>
-            <div class="work-item">
-                <div class="work-text">
+                </li>
+                <li class="work-item">
                     <span class="work-title">Pioneers and Algae</span>
                     <span class="work-year">2014</span>
-                </div>
-                <img src="ben2.jpg" alt="Pioneers and Algae" class="work-image">
-            </div>
-            <!-- Add more works as needed -->
+                </li>
+                <li class="work-item">
+                    <span class="work-title">Algae and Orchids</span>
+                    <span class="work-year">2014</span>
+                </li>
+                <li class="work-item">
+                    <span class="work-title">Her name & Amygdala Vertigo</span>
+                    <span class="work-year">2014-12</span>
+                </li>
+                <li class="work-item">
+                    <span class="work-title">Pioneers painting</span>
+                    <span class="work-year">2013</span>
+                </li>
+            </ul>
+
+            <h2>Drawings</h2>
+            <ul class="work-list">
+                <li class="work-item">
+                    <span class="work-title">From the series Voluk & Other Stories</span>
+                    <span class="work-year">1977</span>
+                </li>
+            </ul>
         </div>
 
         <!-- Info/Contact Section -->
@@ -217,8 +228,8 @@
         // Slideshow functionality
         let currentSlide = 0;
         const slides = document.querySelectorAll('.slide');
-        const slideTitles = ["Turkis Quest painting", "Pioneers and Algae"]; // Add more titles
-        const slideYears = ["2014", "2014"]; // Add more years
+        const slideTitles = ["Artwork Title", "Another Artwork"]; // Update these
+        const slideYears = ["Year", "Year"]; // Update these
         
         function showSlide(n) {
             slides.forEach(slide => slide.classList.remove('active'));
