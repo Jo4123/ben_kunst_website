@@ -116,12 +116,17 @@
             height: 100%;
             background-color: rgba(0,0,0,0.9);
             overflow: auto;
+            text-align: center;
         }
         .modal-content {
             margin: auto;
             display: block;
             max-width: 90%;
             max-height: 90%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
         .close {
             position: absolute;
@@ -131,10 +136,19 @@
             font-size: 30px;
             cursor: pointer;
         }
-        /* Info Section */
-        .info {
+        /* Info/Impressum Sections */
+        .info, .impressum {
             display: none;
             line-height: 1.8;
+        }
+        .back-link {
+            color: #333;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+        }
+        .back-link:hover {
+            text-decoration: underline;
         }
         /* Footer */
         footer {
@@ -212,25 +226,6 @@
                     <span class="art-year">2014</span>
                 </div>
                 <!-- Add more artworks as needed -->
-                <div class="artwork" onclick="openModal('ben1.jpg')">
-                    <img src="ben1.jpg" alt="Algae and Orchids">
-                    <span class="art-title">Algae and Orchids</span>
-                    <span class="art-year">2014</span>
-                </div>
-                <div class="artwork" onclick="openModal('ben2.jpg')">
-                    <img src="ben2.jpg" alt="Her name & Amygdala Vertigo">
-                    <span class="art-title">Her name & Amygdala Vertigo</span>
-                    <span class="art-year">2014-12</span>
-                </div>
-            </div>
-
-            <h2>Drawings</h2>
-            <div class="art-grid">
-                <div class="artwork" onclick="openModal('ben1.jpg')">
-                    <img src="ben1.jpg" alt="From the series Voluk & Other Stories">
-                    <span class="art-title">From the series Voluk & Other Stories</span>
-                    <span class="art-year">1977</span>
-                </div>
             </div>
         </div>
 
@@ -245,6 +240,22 @@
             <p>
                 Email: <a href="mailto:jo.huschenbett@gmail.com">jo.huschenbett@gmail.com</a>
             </p>
+            <a href="#" onclick="showHome()" class="back-link">← Back to Home</a>
+        </div>
+
+        <!-- Impressum Section -->
+        <div id="impressum" class="impressum">
+            <h2>Impressum</h2>
+            <p>
+                <strong>Ben Winkler</strong><br>
+                Address (if desired)<br>
+                Email: <a href="mailto:jo.huschenbett@gmail.com">jo.huschenbett@gmail.com</a>
+            </p>
+            <p>
+                <strong>Privacy Policy:</strong><br>
+                This website does not collect personal data.
+            </p>
+            <a href="#" onclick="showHome()" class="back-link">← Back to Home</a>
         </div>
     </div>
 
@@ -258,7 +269,7 @@
         <span>© 2024 Ben Winkler.</span>
         <div class="footer-links">
             <a href="#" onclick="showInfo()">Contact</a>
-            <a href="impressum.html">Impressum</a>
+            <a href="#" onclick="showImpressum()">Impressum</a>
             <a href="https://www.instagram.com/bn.wnklr/" class="instagram-link" target="_blank">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/768px-Instagram_logo_2016.svg.png" alt="Instagram">
                 <span>@bn.wnklr</span>
@@ -313,6 +324,7 @@
             document.getElementById('home').style.display = 'flex';
             document.getElementById('works').style.display = 'none';
             document.getElementById('info').style.display = 'none';
+            document.getElementById('impressum').style.display = 'none';
             window.scrollTo(0, 0);
         }
         
@@ -320,6 +332,7 @@
             document.getElementById('home').style.display = 'none';
             document.getElementById('works').style.display = 'block';
             document.getElementById('info').style.display = 'none';
+            document.getElementById('impressum').style.display = 'none';
             window.scrollTo(0, 0);
         }
         
@@ -327,6 +340,15 @@
             document.getElementById('home').style.display = 'none';
             document.getElementById('works').style.display = 'none';
             document.getElementById('info').style.display = 'block';
+            document.getElementById('impressum').style.display = 'none';
+            window.scrollTo(0, 0);
+        }
+        
+        function showImpressum() {
+            document.getElementById('home').style.display = 'none';
+            document.getElementById('works').style.display = 'none';
+            document.getElementById('info').style.display = 'none';
+            document.getElementById('impressum').style.display = 'block';
             window.scrollTo(0, 0);
         }
         
