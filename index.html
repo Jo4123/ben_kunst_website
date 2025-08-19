@@ -1,77 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Art Portfolio</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #fdfdfd;
-      margin: 0;
-      padding: 20px;
-      text-align: center;
-    }
-
-    h1 {
-      color: #333;
-      margin-bottom: 10px;
-    }
-
-    p {
-      color: #555;
-      margin-top: 0;
-    }
-
-    .gallery {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-      margin-top: 30px;
-    }
-
-    .gallery img {
-      width: 250px;
-      height: auto;
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-      transition: transform 0.2s;
-    }
-
-    .gallery img:hover {
-      transform: scale(1.05);
-    }
-
-    .contact {
-      margin-top: 50px;
-      font-size: 18px;
-      color: #333;
-    }
-
-    .contact a {
-      color: #1a73e8;
-      text-decoration: none;
-    }
-
-    .contact a:hover {
-      text-decoration: underline;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name | Art Portfolio</title>
+    <style>
+        body {
+            font-family: 'Helvetica', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            font-size: 24px;
+            font-weight: normal;
+            margin-bottom: 40px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+        h2 {
+            font-size: 18px;
+            font-weight: normal;
+            margin: 30px 0 10px 0;
+        }
+        .works {
+            margin-bottom: 50px;
+        }
+        .work-item {
+            margin-bottom: 15px;
+        }
+        .work-title {
+            font-weight: bold;
+        }
+        .work-year {
+            color: #777;
+        }
+        nav {
+            margin: 20px 0;
+        }
+        nav a {
+            color: #333;
+            text-decoration: none;
+            margin-right: 15px;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .info {
+            display: none; /* Hidden by default */
+        }
+        footer {
+            margin-top: 50px;
+            font-size: 14px;
+            color: #777;
+            border-top: 1px solid #ddd;
+            padding-top: 10px;
+        }
+    </style>
 </head>
 <body>
-  <h1>My Art Portfolio</h1>
-  <p>Welcome to my gallery! Here are some of my artworks:</p>
+    <h1>Your Name</h1>
 
-  <div class="gallery">
-    <!-- Replace these with your own image files -->
-    <img src="text.png" alt="Artwork 1">
-  </div>
+    <nav>
+        <a href="#" onclick="showWorks()">Works</a>
+        <a href="#" onclick="showInfo()">Info/Contact</a>
+    </nav>
 
-  <div class="contact">
-    <h2>Contact Me</h2>
-    <p>Email: <a href="ben.winkler.callenberg@web.de">ben.winkler.callenberg@web.de</a></p>
-    <p>Instagram: <a href="https://www.instagram.com/bn.wnklr/">@bn.wnklr</a></p>
-  </div>
+    <!-- WORKS SECTION -->
+    <div id="works" class="works">
+        <h2>Paintings</h2>
+        <div class="work-item">
+            <span class="work-title">Turkis Quest painting</span>
+            <span class="work-year">2014</span>
+        </div>
+        <div class="work-item">
+            <span class="work-title">Pioneers and Algae</span>
+            <span class="work-year">2014</span>
+        </div>
+        <div class="work-item">
+            <span class="work-title">Algae and Orchids</span>
+            <span class="work-year">2014</span>
+        </div>
+        <!-- Add more works here -->
+        <div class="work-item">
+            <span class="work-title">Her name & Amygdala Vertigo</span>
+            <span class="work-year">2014-12</span>
+        </div>
+        <div class="work-item">
+            <span class="work-title">Pioneers painting</span>
+            <span class="work-year">2013</span>
+        </div>
+
+        <h2>Drawings</h2>
+        <div class="work-item">
+            <span class="work-title">From the series Voluk & Other Stories</span>
+            <span class="work-year">drawing: 1977</span>
+        </div>
+    </div>
+
+    <!-- INFO/CONTACT SECTION (hidden by default) -->
+    <div id="info" class="info">
+        <h2>Info</h2>
+        <p>
+            Short bio or artist statement goes here. 
+            You can describe your artistic practice, inspirations, or exhibitions.
+        </p>
+
+        <h2>Contact</h2>
+        <p>
+            Email: <a href="jo.huschenbett@gmail.com">your-email@example.com</a><br>
+            Instagram: <a href="https://www.instagram.com/bn.wnklr/">@yourusername</a>
+        </p>
+    </div>
+
+    <footer>
+        © 2024 Your Name. All rights reserved.
+    </footer>
+
+    <script>
+        function showWorks() {
+            document.getElementById("works").style.display = "block";
+            document.getElementById("info").style.display = "none";
+        }
+        function showInfo() {
+            document.getElementById("works").style.display = "none";
+            document.getElementById("info").style.display = "block";
+        }
+        // Default: show works
+        showWorks();
+    </script>
 </body>
 </html>
