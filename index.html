@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ben Winkler</title>
+    <title>Ben Winkler | Art Portfolio</title>
     <style>
         body {
             font-family: 'Helvetica', sans-serif;
@@ -34,8 +34,51 @@
             font-weight: normal;
             margin: 30px 0 10px 0;
         }
+        /* Navigation */
+        .main-nav {
+            position: absolute;
+            top: 20px;
+            right: 5%;
+            display: flex;
+            gap: 20px;
+        }
+        .main-nav a {
+            color: #333;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        .main-nav a:hover {
+            text-decoration: underline;
+        }
+        /* Slideshow */
+        .slideshow {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 50px 0;
+        }
+        .slide {
+            max-width: 100%;
+            height: auto;
+            max-height: 70vh;
+            display: none;
+            animation: fade 1.5s;
+        }
+        @keyframes fade {
+            from {opacity: .4}
+            to {opacity: 1}
+        }
+        .slide.active {
+            display: block;
+        }
+        .slide-info {
+            margin-top: 15px;
+            text-align: center;
+        }
+        /* Works Section */
         .works {
             margin-bottom: 50px;
+            display: none;
         }
         .work-item {
             margin-bottom: 25px;
@@ -60,21 +103,11 @@
             height: auto;
             border: 1px solid #eee;
         }
-        nav {
-            margin: 20px 0 40px 0;
-        }
-        nav a {
-            color: #333;
-            text-decoration: none;
-            margin-right: 15px;
-            font-size: 16px;
-        }
-        nav a:hover {
-            text-decoration: underline;
-        }
+        /* Info Section */
         .info {
-            display: none; /* Hidden by default */
+            display: none;
         }
+        /* Footer */
         footer {
             margin-top: 50px;
             font-size: 14px;
@@ -115,14 +148,26 @@
 </head>
 <body>
     <div class="container">
-        <h1>Ben Winkler</h1>
-
-        <nav>
-            <a href="#" onclick="showWorks()">Works</a>
+        <nav class="main-nav">
+            <a href="#" onclick="showHome()">Home</a>
+            <a href="#" onclick="showWorks()">Art</a>
             <a href="#" onclick="showInfo()">Info/Contact</a>
         </nav>
 
-        <!-- WORKS SECTION -->
+        <h1>Ben Winkler</h1>
+
+        <!-- Home/Slideshow Section -->
+        <div id="home" class="slideshow">
+            <img src="turkis-quest.jpg" class="slide active" alt="Turkis Quest painting">
+            <img src="pioneers-algae.jpg" class="slide" alt="Pioneers and Algae">
+            <!-- Add more slides as needed -->
+            <div class="slide-info">
+                <span id="slide-title">Turkis Quest painting</span>
+                <span id="slide-year">2014</span>
+            </div>
+        </div>
+
+        <!-- Art/Works Section -->
         <div id="works" class="works">
             <h2>Paintings</h2>
             <div class="work-item">
@@ -142,7 +187,7 @@
             <!-- Add more works as needed -->
         </div>
 
-        <!-- INFO/CONTACT SECTION -->
+        <!-- Info/Contact Section -->
         <div id="info" class="info">
             <h2>Info</h2>
             <p>
@@ -157,10 +202,10 @@
     </div>
 
     <footer>
-        <span>© 2024 Your Name. All rights reserved.</span>
+        <span>© 2024 Ben Winkler.</span>
         <div class="footer-links">
             <a href="#" onclick="showInfo()">Contact</a>
-            <a href="impressum.html">Impressum</a> <!-- Link to your privacy policy page -->
+            <a href="impressum.html">Impressum</a>
             <a href="https://www.instagram.com/bn.wnklr/" class="instagram-link" target="_blank">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/768px-Instagram_logo_2016.svg.png" alt="Instagram">
                 <span>@bn.wnklr</span>
@@ -169,18 +214,51 @@
     </footer>
 
     <script>
+        // Slideshow functionality
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const slideTitles = ["Turkis Quest painting", "Pioneers and Algae"]; // Add more titles
+        const slideYears = ["2014", "2014"]; // Add more years
+        
+        function showSlide(n) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            currentSlide = (n + slides.length) % slides.length;
+            slides[currentSlide].classList.add('active');
+            document.getElementById('slide-title').textContent = slideTitles[currentSlide];
+            document.getElementById('slide-year').textContent = slideYears[currentSlide];
+        }
+        
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+        
+        // Change slide every 5 seconds
+        setInterval(nextSlide, 5000);
+        
+        // Page navigation
+        function showHome() {
+            document.getElementById('home').style.display = 'flex';
+            document.getElementById('works').style.display = 'none';
+            document.getElementById('info').style.display = 'none';
+            window.scrollTo(0, 0);
+        }
+        
         function showWorks() {
-            document.getElementById("works").style.display = "block";
-            document.getElementById("info").style.display = "none";
-            window.scrollTo(0, 0); // Scroll to top when switching
+            document.getElementById('home').style.display = 'none';
+            document.getElementById('works').style.display = 'block';
+            document.getElementById('info').style.display = 'none';
+            window.scrollTo(0, 0);
         }
+        
         function showInfo() {
-            document.getElementById("works").style.display = "none";
-            document.getElementById("info").style.display = "block";
-            window.scrollTo(0, 0); // Scroll to top when switching
+            document.getElementById('home').style.display = 'none';
+            document.getElementById('works').style.display = 'none';
+            document.getElementById('info').style.display = 'block';
+            window.scrollTo(0, 0);
         }
-        // Default: show works
-        showWorks();
+        
+        // Start on home page
+        showHome();
     </script>
 </body>
 </html>
